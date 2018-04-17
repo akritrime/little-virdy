@@ -1,0 +1,10 @@
+[package]
+name = "little-virdy"
+version = "0.1.0"
+authors = ["akritrime <akritrime@gmail.com>"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "*"
