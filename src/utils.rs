@@ -17,31 +17,31 @@ impl Into<TextOrElem> for Element  {
     }
 }
 
-pub struct Elem {
+pub struct VElem {
     pub name: String,
     pub _props: Option<String>,
-    pub children: Vec<Vnode>
+    pub children: Vec<VNode>
 }
 
-pub enum Vnode {
-    Elem(Elem),
+pub enum VNode {
+    Elem(VElem),
     Text(String)
 }
 
-impl Into<Vnode> for String  {
-    fn into(self) -> Vnode {
-        Vnode::Text(self)
+impl Into<VNode> for String  {
+    fn into(self) -> VNode {
+        VNode::Text(self)
     }
 }
 
-impl Into<Vnode> for &'static str  {
-    fn into(self) -> Vnode {
-        Vnode::Text(self.into())
+impl Into<VNode> for &'static str  {
+    fn into(self) -> VNode {
+        VNode::Text(self.into())
     }
 }
 
-impl Into<Vnode> for Elem  {
-    fn into(self) -> Vnode {
-        Vnode::Elem(self)
+impl Into<VNode> for VElem  {
+    fn into(self) -> VNode {
+        VNode::Elem(self)
     }
 }

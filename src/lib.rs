@@ -14,34 +14,32 @@ use utils::*;
 macro_rules! children {
     ( $( $x: expr),* ) => {
         {
-            let mut temp_vec = Vec::new();
-            $(
-                temp_vec.push($x.into());
-            )*
-            temp_vec
+            vec![$(
+                $x.into(),
+            )*]
         }
     };
 }
 
-pub fn h(name: &str, _props: Option<String>, children: Vec<Vnode>) -> Elem {
+pub fn h(name: &str, _props: Option<String>, children: Vec<VNode>) -> VElem {
     let name = String::from(name);
-    Elem {
+    VElem {
         name,
         _props,
         children
     }
 }
-pub fn create_node<T: Into<Vnode>> (node: T) -> TextOrElem {
+pub fn create_node<T: Into<VNode>> (node: T) -> TextOrElem {
     let node = node.into();
     match node {
-        Vnode::Elem(elm) => {
+        VNode::Elem(elm) => {
             let el = create_element(elm.name);
             elm.children.into_iter()
                 .map(create_node)
                 .for_each(|child| append_child(&el, child));
             TextOrElem::Elem(el)
         }
-        Vnode::Text(data) => TextOrElem::Text(create_text_node(data))
+        VNode::Text(data) => TextOrElem::Text(create_text_node(data))
     }
 }
 
