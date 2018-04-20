@@ -23,12 +23,12 @@ extern {
     
 }
 
-pub trait Node {
+// pub trait Node {
     
-}
+// }
 
-impl Node for Element {}
-impl Node for Text {}
+// impl Node for Element {}
+// impl Node for Text {}
 
 
 pub fn create_element(name: String) -> Element {
